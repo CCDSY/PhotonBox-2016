@@ -38,10 +38,10 @@ public class SendVideoWithCrosshair extends Command {
 
     @Override
     protected void execute() {
-        offsetX = Util.limit(offsetX + (int)(Robot.instance.oi.getScaledCrosshairOffsetX() * VisionConfig.maxOffset), -VisionConfig.maxOffset, VisionConfig.maxOffset);
-        offsetY = Util.limit(offsetY + (int)(Robot.instance.oi.getScaledCrosshairOffsetY() * VisionConfig.maxOffset), -VisionConfig.maxOffset, VisionConfig.maxOffset);
         SmartDashboard.putNumber("Crosshair offset X", offsetX);
         SmartDashboard.putNumber("Crosshair offset Y", offsetY);
+        offsetX = Util.limit((int)SmartDashboard.getNumber("Crosshair offset X") + (int)(Robot.instance.oi.getScaledCrosshairOffsetX() * VisionConfig.maxOffset), -VisionConfig.maxOffset, VisionConfig.maxOffset);
+        offsetY = Util.limit((int)SmartDashboard.getNumber("Crosshair offset Y") + (int)(Robot.instance.oi.getScaledCrosshairOffsetY() * VisionConfig.maxOffset), -VisionConfig.maxOffset, VisionConfig.maxOffset);
         server.setImage(vision.showCrosshairOnImage(vision.grabPicture(), offsetX, offsetY));
     }
 
