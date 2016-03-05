@@ -9,6 +9,9 @@ import org.usfirst.frc.team6179.robot.configurations.ClimberConfig;
 import org.usfirst.frc.team6179.robot.configurations.ShooterConfig;
 import org.usfirst.frc.team6179.robot.mappings.RobotMap;
 
+/**
+ * The subsystem that controls the mechanism used to lift the robot to scale the tower.
+ */
 public class Climber extends Subsystem {
     /** The servo used to lock the climber */
     public Servo lockServo = new Servo(RobotMap.climberLockServo);

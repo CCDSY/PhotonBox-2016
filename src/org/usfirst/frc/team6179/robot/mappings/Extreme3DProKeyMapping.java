@@ -2,6 +2,8 @@ package org.usfirst.frc.team6179.robot.mappings;
 
 /**
  * Created by CC on 2/26/16.
+ *
+ * This class summarizes the mappings of all the axes and buttons on the Extreme 3D Pro.
  */
 public class Extreme3DProKeyMapping {
 

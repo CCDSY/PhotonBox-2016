@@ -5,8 +5,13 @@ import org.usfirst.frc.team6179.robot.Robot;
 
 /**
  * Created by huangzhengcheng1 on 2/29/16.
+ *
+ * A command which moves the crosshair back to its default position.
+ *
+ * see also: SendVideoWithCrosshair
  */
 public class ResetCrosshair extends Command {
+
     @Override
     protected void initialize() {
         Robot.instance.shooterVision.crosshairOffsetX = 0;
