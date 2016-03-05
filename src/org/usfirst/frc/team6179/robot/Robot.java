@@ -19,6 +19,7 @@ import org.usfirst.frc.team6179.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
+    /** A globally stored reference to the robot instance, since there will only be one instance at any given time. */
     public static Robot instance;
 
     Command autonomousCommand;
@@ -39,11 +40,10 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+        // sets the global reference
         Robot.instance = this;
 
-        chooser = new SendableChooser();
-        SmartDashboard.putData("Auto mode", chooser);
-
+        // initialize subsystems
         driveTrain = new DriveTrain();
         gyro = new DriveTrainGyro();
         shooter = new Shooter();
@@ -52,8 +52,13 @@ public class Robot extends IterativeRobot {
         arm = new Arm();
         climber = new Climber();
 
+        // initialize user interaction module
+        // any operation requesting user input should be put after this line
         oi = new LogitechGamepad();
-   }
+
+        chooser = new SendableChooser();
+        SmartDashboard.putData("Auto mode", chooser);
+    }
 
     /**
      * This function is called once each time the robot enters Disabled mode.

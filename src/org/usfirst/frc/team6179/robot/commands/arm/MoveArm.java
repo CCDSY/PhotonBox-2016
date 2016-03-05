@@ -3,6 +3,9 @@ package org.usfirst.frc.team6179.robot.commands.arm;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team6179.robot.Robot;
 
+/**
+ * A command which allows the driver to control the Arm with joystick.
+ */
 public class MoveArm extends Command {
 
     public MoveArm() {

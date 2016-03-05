@@ -5,6 +5,7 @@ import org.usfirst.frc.team6179.robot.subsystems.Vision;
 
 /**
  * Created by CC on 2/27/16.
+ *
  * A command that keeps sending video feed from a camera back to driver's computer.
  * After a Vision object is used with this command, it should not be used to do any other vision processing operation.
  */
@@ -20,6 +21,8 @@ public class SendVideo extends Command {
 
     @Override
     protected void initialize() {
+        // since we don't have to process the image, we can just let `CameraServer` handle everything for us.
+        // every tick, `CameraServer` will capture the image and then send it back to the Smart Dashboard.
         vision.startAutoCapture();
     }
 
