@@ -5,8 +5,6 @@ import org.usfirst.frc.team6179.robot.Robot;
 
 /**
  * Created by huangzhengcheng1 on 2/26/16.
- *
- * Drive the robot in arcade mode with joystick inputs from the driver.
  */
 public class ArcadeDriveWithJoystick extends Command {
 

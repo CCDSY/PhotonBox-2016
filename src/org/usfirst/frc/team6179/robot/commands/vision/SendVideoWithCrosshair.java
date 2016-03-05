@@ -10,7 +10,6 @@ import org.usfirst.frc.team6179.robot.subsystems.Vision;
 
 /**
  * Created by huangzhengcheng1 on 2/28/16.
- *
  * A command that sends back video from a camera to the driver's computer
  * with a crosshair drawn in the center
  */
@@ -32,15 +31,10 @@ public class SendVideoWithCrosshair extends Command {
 
     @Override
     protected void execute() {
-        // update the crosshair position based on user input.
         Robot.instance.shooterVision.crosshairOffsetX = Util.limit(Robot.instance.shooterVision.crosshairOffsetX + (int)(Robot.instance.oi.getScaledCrosshairOffsetX() * VisionConfig.offsetIncrement), -VisionConfig.maxOffset, VisionConfig.maxOffset);
         Robot.instance.shooterVision.crosshairOffsetY = Util.limit(Robot.instance.shooterVision.crosshairOffsetY + (int)(Robot.instance.oi.getScaledCrosshairOffsetY() * VisionConfig.offsetIncrement), -VisionConfig.maxOffset, VisionConfig.maxOffset);
-
-        // display the new crosshair position.
         SmartDashboard.putNumber("Crosshair offset X", Robot.instance.shooterVision.crosshairOffsetX);
         SmartDashboard.putNumber("Crosshair offset Y", Robot.instance.shooterVision.crosshairOffsetY);
-
-        // send back the new image.
         server.setImage(vision.showCrosshairOnImage(vision.grabPicture(), Robot.instance.shooterVision.crosshairOffsetX, Robot.instance.shooterVision.crosshairOffsetY));
     }
 

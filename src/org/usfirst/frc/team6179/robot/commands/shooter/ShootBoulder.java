@@ -26,15 +26,12 @@ public class ShootBoulder extends Command {
     }
 
     protected void execute() {
-        // deliver the boulder to the shooter wheels when the desired delay has passed.
-        // this delay allows the shooter wheels to reach its full speed before coming into contact with the boulder.
         if (!boulderFired && timer.get() >= ShooterConfig.shooterTriggerDelay) {
-            // deliver the boulder.
             Robot.instance.shooter.triggerServo.set(ShooterConfig.triggerServoForwardPosition);
 
-            // reset the timer to time another delay.
             timer.reset();
             boulderFired = true;
+            // not sure if the timer needs to be started again after reset.
         }
     }
 

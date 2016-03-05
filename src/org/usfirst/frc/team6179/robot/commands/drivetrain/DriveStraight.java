@@ -6,10 +6,6 @@ import org.usfirst.frc.team6179.robot.Robot;
 
 /**
  * Created by huangzhengcheng1 on 2/28/16.
- *
- * A command which makes the robot go in a straight line at the specified speed.
- *
- * Notice: the command won't finish on its own and the robot will keep running until told otherwise.
  */
 public class DriveStraight extends Command {
 

@@ -14,7 +14,6 @@ import org.usfirst.frc.team6179.robot.configurations.VisionConfig;
 
 /**
  * Created by huangzhengcheng1 on 2/27/16.
- *
  * A subsystem that encapsulates the use of a camera.
  */
 public class Vision extends Subsystem {
@@ -47,6 +46,7 @@ public class Vision extends Subsystem {
 
     @Override
     protected void initDefaultCommand() {
+        setDefaultCommand(new SendVideoWithCrosshair(Robot.instance.shooterVision));
     }
 
     /**

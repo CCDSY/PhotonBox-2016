@@ -6,8 +6,6 @@ import org.usfirst.frc.team6179.robot.subsystems.DriveTrainGyro;
 
 /**
  * Created by huangzhengcheng1 on 3/5/16.
- *
- * A command which updates the gyro's data every tick.
  */
 public class UpdateDriveTrainGyroData extends Command {
 
