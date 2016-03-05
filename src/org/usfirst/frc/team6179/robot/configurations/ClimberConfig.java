@@ -11,8 +11,8 @@ public class ClimberConfig {
     public static double stretchingOutput = 1;
 
     /** The servo position where the lock servo locks the climber */
-    public static double lockServoLockPosition = 0.08;
+    public static double lockServoLockPosition = 1;
     /** The servo position where the lock servo is unlocked */
-    public static double lockServoUnlockPosition = 0.48;
+    public static double lockServoUnlockPosition = 0;
 
 }

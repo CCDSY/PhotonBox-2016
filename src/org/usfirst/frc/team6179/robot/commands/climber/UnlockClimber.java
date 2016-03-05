@@ -25,8 +25,8 @@ public class UnlockClimber extends Command {
 
     @Override
     protected boolean isFinished() {
-        // The unlock action needn't keep running after the climber is unlocked
-        return true;
+        // The command finishes when the servo has moved to the designated position.
+        return Robot.instance.climber.lockServo.get() == ClimberConfig.lockServoUnlockPosition;
     }
 
     @Override

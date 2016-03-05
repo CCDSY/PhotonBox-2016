@@ -15,6 +15,8 @@ public class DriveTrainConfig {
 
     public static double gyroSensitivity = 131.00;
 
+    public static double gyroOffset = -0.014;
+
     /**
      * The speed multiplier value used by default
      */

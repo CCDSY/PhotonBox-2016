@@ -25,8 +25,8 @@ public class ResetClimberLock extends Command {
 
     @Override
     protected boolean isFinished() {
-        // The reset lock action needn't keep running after the lock is reset
-        return true;
+        // The command finishes when the servo has moved to the designated position.
+        return Robot.instance.climber.lockServo.get() == ClimberConfig.lockServoLockPosition;
     }
 
     @Override
