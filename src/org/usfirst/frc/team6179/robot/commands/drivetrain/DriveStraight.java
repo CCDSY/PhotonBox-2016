@@ -18,8 +18,6 @@ public class DriveStraight extends Command {
 
     public DriveStraight() {
         requires(Robot.instance.driveTrain);
-        // This command will modify a field of `DriveTrainGyro`.
-        requires(Robot.instance.gyro);
     }
 
     @Override
