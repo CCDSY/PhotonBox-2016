@@ -13,8 +13,8 @@ import org.usfirst.frc.team6179.robot.Robot;
  */
 public class DriveStraight extends Command {
 
-    private double speed;
-    private double turningIncrement;
+    private double speed = 0.8;
+    private double turningIncrement = 0.5;
 
     public DriveStraight() {
         requires(Robot.instance.driveTrain);
@@ -22,10 +22,6 @@ public class DriveStraight extends Command {
 
     @Override
     protected void initialize() {
-        // todo: remove this. we no longer need to control these parameters.
-        speed = SmartDashboard.getNumber("Speed");
-        turningIncrement = SmartDashboard.getNumber("Turning Increment");
-
         Robot.instance.driveTrain.arcadeDrive(speed, 0);
         Robot.instance.gyro.heading = 0;
     }
