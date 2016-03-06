@@ -34,7 +34,7 @@ public class DriveTrain extends Subsystem {
      * @param rotation the value which controls the rotation of the robot; positive is left, negative is right.
      */
     public void arcadeDrive(double movement, double rotation) {
-        drive.tankDrive(movement * speedMultiplier - rotation * turnMultiplier, rotation * turnMultiplier + rotation * turnMultiplier, squaredInput);
+        drive.arcadeDrive(movement * speedMultiplier, rotation * turnMultiplier, squaredInput);
     }
 
     /**
