@@ -86,11 +86,6 @@ public class LogitechGamepad implements OI {
     }
 
     @Override
-    public double getClimberLockServoMovement() {
-        return stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_RIGHT_X);
-    }
-
-    @Override
     public double getShooterElevatorInput() {
         return stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_RIGHT_Y);
     }
