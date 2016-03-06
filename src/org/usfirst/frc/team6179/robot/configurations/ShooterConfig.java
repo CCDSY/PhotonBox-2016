@@ -9,7 +9,7 @@ public class ShooterConfig {
     /**
      * The output signal to send to the shooter trigger servo to make it move to a position where it will deliver the boulder to the shooter wheels.
      */
-    public static double triggerServoForwardPosition = 0.8;
+    public static double triggerServoForwardPosition = 0.9;
 
     /**
      * The delay, in seconds, from when the shooter motors start and when the trigger delivers the boulder.
@@ -27,6 +27,6 @@ public class ShooterConfig {
     /**
      * The output signal to send to the shooter motors to make the boulder go inward.
      */
-    public static double ingoingOutput = 0.6;
+    public static double ingoingOutput = 0.5;
 
 }
