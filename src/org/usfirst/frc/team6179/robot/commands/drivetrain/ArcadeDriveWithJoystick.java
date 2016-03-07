@@ -14,6 +14,7 @@ public class ArcadeDriveWithJoystick extends Command {
     private double headingCorrection = 0;
     private double turningIncrement = 0.5;
     private double someCoefficient = 0.6;
+    private double joystickInputMultiplier = 0.5;
 
     public ArcadeDriveWithJoystick() {
         requires(Robot.instance.driveTrain);
@@ -43,7 +44,7 @@ public class ArcadeDriveWithJoystick extends Command {
         }
         // For the rotation value, take the sum of the last heading correction and the user input value
         // to prevent unpredicted rotation.
-        Robot.instance.driveTrain.arcadeDrive(Robot.instance.oi.getMovement(), headingCorrection + Robot.instance.oi.getRotation());
+        Robot.instance.driveTrain.arcadeDrive(Robot.instance.oi.getMovement(), headingCorrection + Robot.instance.oi.getRotation() * joystickInputMultiplier);
     }
 
     protected boolean isFinished() {
