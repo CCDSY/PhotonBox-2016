@@ -15,7 +15,7 @@ public class DriveTrain extends Subsystem {
     public double speedMultiplier = 0.8;
 
     /** Multiplies the turning speed to be set when setting the turning speed */
-    public double turnMultiplier = 0.6;
+    public double turnMultiplier = 0.3;
 
     /** Indicates whether the speed input should be squared */
     public boolean squaredInput = true;

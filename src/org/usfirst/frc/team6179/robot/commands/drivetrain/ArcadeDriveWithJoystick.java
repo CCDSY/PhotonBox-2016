@@ -13,6 +13,7 @@ public class ArcadeDriveWithJoystick extends Command {
     /** The rotation value currently used to correct the heading of the robot */
     private double headingCorrection = 0;
     private double turningIncrement = 0.5;
+    private double someCoefficient = 0.6;
 
     public ArcadeDriveWithJoystick() {
         requires(Robot.instance.driveTrain);
@@ -23,10 +24,17 @@ public class ArcadeDriveWithJoystick extends Command {
     }
 
     protected void execute() {
-        if (Robot.instance.oi.getRotation() == 0) {
+        if (Robot.instance.oi.getRotation() == 0) { // It seems that when the driver pushes the AXIS_LEFT_Y,
+            // the value of AXIS_LEFT_X is easily zero. The gamepad has done the approximation for us.
+
             // When the driver is not manually turning the robot, keep updating the heading correction value
             // to aid the drive on driving straight.
-            headingCorrection = Math.max(-0.8, Math.min(0.8, turningIncrement * Robot.instance.gyro.heading / 0.001));
+            double turningConstant = Robot.instance.oi.getMovement() * someCoefficient;
+            if (Robot.instance.oi.getMovement() >= 0) {
+                headingCorrection = Math.max(-turningConstant, Math.min(turningConstant, turningIncrement * Robot.instance.gyro.heading * turningConstant / 0.01));
+            } else {
+                headingCorrection = Math.max(turningConstant, Math.min(-turningConstant, turningIncrement * Robot.instance.gyro.heading * turningConstant / 0.01));
+            }
         } else {
             // When the driver is manually turning the robot, the robot is considered heading the right way.
             // In this command we only use the heading data for correction.
