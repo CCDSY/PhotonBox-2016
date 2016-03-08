@@ -27,8 +27,6 @@ public interface OI {
      */
     double getRightMovement();
 
-    double getClimberLockServoMovement();
-
     /**
      * Gets the horizontal movement value of the crosshair when one is drawn in the video feed in the Smart Dashboard.
      */

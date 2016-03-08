@@ -30,10 +30,6 @@ public class LogitechGamepad implements OI {
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_RB).whileHeld(new AimMode());
         // bind buttons to commands. //
 
-        // set parameters for drive straight test
-        SmartDashboard.putNumber("Speed", 0.8);
-        SmartDashboard.putNumber("Turning Increment", 0.5);
-
         // display commands on dashboard for easy testing. //
         // Shooter
         SmartDashboard.putData("Shoot Boulder", new ShootBoulder());
@@ -87,11 +83,6 @@ public class LogitechGamepad implements OI {
     @Override
     public double getArmMovement() {
         return (stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_RIGHT_TRIGGER) - stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_TRIGGER)) * ArmConfig.armMovementMultiplier;
-    }
-
-    @Override
-    public double getClimberLockServoMovement() {
-        return stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_RIGHT_X);
     }
 
     @Override
