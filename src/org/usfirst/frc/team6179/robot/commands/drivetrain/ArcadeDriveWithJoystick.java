@@ -14,7 +14,7 @@ public class ArcadeDriveWithJoystick extends Command {
     private double headingCorrection = 0;
     private double turningIncrement = 0.5;
     private double someCoefficient = 0.6;
-    private double joystickInputMultiplier = 0.5;
+    private double joystickInputMultiplier = 1.3;
 
     public ArcadeDriveWithJoystick() {
         requires(Robot.instance.driveTrain);
