@@ -10,17 +10,28 @@ import org.usfirst.frc.team6179.robot.sensors.GY521GyroAccelerometer;
 
 /**
  * Created by huangzhengcheng1 on 3/5/16.
+ *
+ * A subsystem used to control the 3-axis gyro installed on the robot.
+ * This subsystem only has a sensor. It doesn't have any actuator.
+ *
+ * Other than the default command which updates the gyro's data every tick,
+ * other command that uses the gyro's data should not `require` this subsystem;
+ * they should just access the `heading` field.
  */
 public class DriveTrainGyro extends Subsystem {
 
-    public double angle;
+    /**
+     * The current heading of the robot.
+     * Commands that want the robot's heading should access this field.
+     */
+    public double heading;
 
     private GY521GyroAccelerometer gy521;
     private Timer timer;
 
     public DriveTrainGyro() {
         gy521 = new GY521GyroAccelerometer();
-        angle = 0;
+        heading = 0;
         timer = new Timer();
         timer.start();
     }
@@ -32,11 +43,11 @@ public class DriveTrainGyro extends Subsystem {
 
     public void updateDriveTrainData() {
         double angularVelocity = getAngularVelocity();
-        angle += timer.get() * angularVelocity;
+        heading += timer.get() * angularVelocity;
         timer.reset();
 
         SmartDashboard.putNumber("Angular Velocity", angularVelocity);
-        SmartDashboard.putNumber("Angle", Robot.instance.gyro.angle);
+        SmartDashboard.putNumber("Angle", Robot.instance.gyro.heading);
     }
 
     public double getAngularVelocity() {

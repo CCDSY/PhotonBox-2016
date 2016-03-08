@@ -14,6 +14,12 @@ public class VisionConfig {
 
     public static int crosshairLineWidth = 4;
 
+    public static int rulerLineWidth = 3;
+
+    public static int rulerLineLength = 40;
+
+    public static int rulerLineGapSize = 40;
+
     public static int offsetIncrement = 10;
 
     public static int maxOffset = 300;

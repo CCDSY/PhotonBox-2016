@@ -36,11 +36,6 @@ public class Extreme3DPro implements OI {
     }
 
     @Override
-    public double getClimberLockServoMovement() {
-        return 0;
-    }
-
-    @Override
     public double getScaledCrosshairOffsetX() {
         return 0;
     }

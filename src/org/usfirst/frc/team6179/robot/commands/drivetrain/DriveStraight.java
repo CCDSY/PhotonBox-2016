@@ -6,11 +6,15 @@ import org.usfirst.frc.team6179.robot.Robot;
 
 /**
  * Created by huangzhengcheng1 on 2/28/16.
+ *
+ * A command which makes the robot go in a straight line at the specified speed.
+ *
+ * Notice: the command won't finish on its own and the robot will keep running until told otherwise.
  */
 public class DriveStraight extends Command {
 
-    private double speed;
-    private double turningIncrement;
+    private double speed = 0.8;
+    private double turningIncrement = 0.5;
 
     public DriveStraight() {
         requires(Robot.instance.driveTrain);
@@ -18,16 +22,13 @@ public class DriveStraight extends Command {
 
     @Override
     protected void initialize() {
-        speed = SmartDashboard.getNumber("Speed");
-        turningIncrement = SmartDashboard.getNumber("Turning Increment");
-
         Robot.instance.driveTrain.arcadeDrive(speed, 0);
-        Robot.instance.gyro.angle = 0;
+        Robot.instance.gyro.heading = 0;
     }
 
     @Override
     protected void execute() {
-        Robot.instance.driveTrain.arcadeDrive(speed, Math.max(-0.8, Math.min(0.8, turningIncrement * Robot.instance.gyro.angle / 0.001)));
+        Robot.instance.driveTrain.arcadeDrive(speed, Math.max(-0.8, Math.min(0.8, turningIncrement * Robot.instance.gyro.heading / 0.001)));
     }
 
     @Override
