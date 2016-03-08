@@ -4,17 +4,14 @@ import com.ni.vision.NIVision;
 import com.ni.vision.NIVision.GetImageSizeResult;
 import com.ni.vision.NIVision.Image;
 import com.ni.vision.NIVision.ImageType;
-import com.ni.vision.NIVision.Point;
 import com.ni.vision.NIVision.Rect;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc.team6179.robot.Robot;
-import org.usfirst.frc.team6179.robot.commands.vision.SendVideoWithCrosshair;
 import org.usfirst.frc.team6179.robot.configurations.VisionConfig;
 
 /**
  * Created by huangzhengcheng1 on 2/27/16.
- *
+ * <p>
  * A subsystem that encapsulates the use of a camera.
  */
 public class Vision extends Subsystem {
@@ -93,6 +90,21 @@ public class Vision extends Subsystem {
         NIVision.imaqDrawShapeOnImage(image, image, verticalRect, NIVision.DrawMode.PAINT_VALUE, NIVision.ShapeMode.SHAPE_RECT, 0);
 
         return image;
+    }
+
+    public void drawLineAboveCenter(Image image, int offsetY, int lineWidth, int lineLength) {
+        Rect lineRect = new Rect(size.height / 2 - lineWidth / 2 + offsetY, size.width / 2 - lineLength / 2, lineWidth, lineLength);
+        NIVision.imaqDrawShapeOnImage(image, image, lineRect, NIVision.DrawMode.PAINT_VALUE, NIVision.ShapeMode.SHAPE_RECT, 0);
+    }
+
+    public void showRulerOnImage(Image image) {
+        int rulerLineCount = size.height / 2 / VisionConfig.rulerLineGapSize - 2;
+
+        for (int i = 1; i < rulerLineCount; i++) {
+            int offset = i * VisionConfig.rulerLineGapSize;
+
+            drawLineAboveCenter(image, offset, VisionConfig.rulerLineWidth, VisionConfig.rulerLineLength);
+        }
     }
 
     /**
