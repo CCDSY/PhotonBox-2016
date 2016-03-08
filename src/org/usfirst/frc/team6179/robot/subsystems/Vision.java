@@ -98,7 +98,7 @@ public class Vision extends Subsystem {
     }
 
     public void showRulerOnImage(Image image) {
-        int rulerLineCount = size.height / 2 / VisionConfig.rulerLineGapSize - 2;
+        int rulerLineCount = size.height / 2 / VisionConfig.rulerLineGapSize;
 
         for (int i = 1; i < rulerLineCount; i++) {
             int offset = i * VisionConfig.rulerLineGapSize;
