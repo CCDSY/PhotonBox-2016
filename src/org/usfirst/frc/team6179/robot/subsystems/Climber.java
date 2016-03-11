@@ -6,7 +6,6 @@ import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import org.usfirst.frc.team6179.robot.configurations.ClimberConfig;
-import org.usfirst.frc.team6179.robot.configurations.ShooterConfig;
 import org.usfirst.frc.team6179.robot.mappings.RobotMap;
 
 /**
