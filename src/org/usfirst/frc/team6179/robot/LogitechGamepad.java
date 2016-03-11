@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6179.robot.commands.AimMode;
+import org.usfirst.frc.team6179.robot.commands.climber.Pull;
 import org.usfirst.frc.team6179.robot.commands.climber.ResetClimberLock;
 import org.usfirst.frc.team6179.robot.commands.climber.UnlockClimber;
 import org.usfirst.frc.team6179.robot.commands.drivetrain.DriveStraight;
@@ -24,6 +25,7 @@ public class LogitechGamepad implements OI {
         stick = new Joystick(0);
 
         // bind buttons to commands. //
+        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_B).whenPressed(new Pull());
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_X).toggleWhenPressed(new CollectBoulder());
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_LB).whenPressed(new ShootBoulder());
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_A).whenPressed(new ResetCrosshair());
