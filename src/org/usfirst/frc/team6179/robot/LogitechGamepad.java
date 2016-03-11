@@ -9,6 +9,7 @@ import org.usfirst.frc.team6179.robot.commands.climber.UnlockClimber;
 import org.usfirst.frc.team6179.robot.commands.drivetrain.DriveStraight;
 import org.usfirst.frc.team6179.robot.commands.shooter.CollectBoulder;
 import org.usfirst.frc.team6179.robot.commands.shooter.ShootBoulder;
+import org.usfirst.frc.team6179.robot.commands.shooter.TestShooterTriggerServo;
 import org.usfirst.frc.team6179.robot.commands.vision.ResetCrosshair;
 import org.usfirst.frc.team6179.robot.commands.vision.SendVideo;
 import org.usfirst.frc.team6179.robot.commands.vision.SendVideoWithAimingMarkings;
@@ -35,11 +36,14 @@ public class LogitechGamepad implements OI {
         // Shooter
         SmartDashboard.putData("Shoot Boulder", new ShootBoulder());
         SmartDashboard.putData("Collect Boulder", new CollectBoulder());
+        SmartDashboard.putData("Test Shooter Trigger Servo", new TestShooterTriggerServo());
         // Vision
         SmartDashboard.putData("Display Shooter Camera Video", new SendVideo(Robot.instance.shooterVision));
         SmartDashboard.putData("Display Shooter Camera Video with Crosshair", new SendVideoWithCrosshair(Robot.instance.shooterVision));
         SmartDashboard.putData("Display Shooter Camera Video with Aiming Markings", new SendVideoWithAimingMarkings(Robot.instance.shooterVision));
+        // DriveTrain
         SmartDashboard.putData("Drive Straight", new DriveStraight());
+        // Climber
         SmartDashboard.putData("Unlock Climber", new UnlockClimber());
         SmartDashboard.putData("Reset Climber Lock", new ResetClimberLock());
         // display commands on dashboard for easy testing. //
@@ -85,6 +89,11 @@ public class LogitechGamepad implements OI {
     @Override
     public double getArmMovement() {
         return (stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_RIGHT_TRIGGER) - stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_TRIGGER)) * ArmConfig.armMovementMultiplier;
+    }
+
+    @Override
+    public double getShooterTriggerServoMovement() {
+        return stick.getRawButton(LogitechGamepadKeyMapping.BTN_Y) ? stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_X) : 0;
     }
 
     @Override
