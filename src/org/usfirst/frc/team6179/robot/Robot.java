@@ -28,7 +28,6 @@ public class Robot extends IterativeRobot {
     public OI oi;
 
     public DriveTrain driveTrain;
-    public DriveTrainGyro gyro;
     public Shooter shooter;
     public ShooterElevator elevator;
     public Vision shooterVision;
@@ -45,7 +44,6 @@ public class Robot extends IterativeRobot {
 
         // initialize subsystems
         driveTrain = new DriveTrain();
-        gyro = new DriveTrainGyro();
         shooter = new Shooter();
         elevator = new ShooterElevator();
         shooterVision = new Vision(RobotMap.shooterCamera);

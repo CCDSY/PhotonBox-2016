@@ -25,26 +25,13 @@ public class ArcadeDriveWithJoystick extends Command {
     }
 
     protected void execute() {
-        if (Robot.instance.oi.getRotation() == 0) { // It seems that when the driver pushes the AXIS_LEFT_Y,
-            // the value of AXIS_LEFT_X is easily zero. The gamepad has done the approximation for us.
+        Robot.instance.driveTrain.gyro.updateData();
 
-            // When the driver is not manually turning the robot, keep updating the heading correction value
-            // to aid the drive on driving straight.
-            double turningConstant = Robot.instance.oi.getMovement() * someCoefficient;
-            if (Robot.instance.oi.getMovement() >= 0) {
-                headingCorrection = Math.max(-turningConstant, Math.min(turningConstant, turningIncrement * Robot.instance.gyro.heading * turningConstant / 0.01));
-            } else {
-                headingCorrection = Math.max(turningConstant, Math.min(-turningConstant, turningIncrement * Robot.instance.gyro.heading * turningConstant / 0.01));
-            }
+        if (Robot.instance.driveTrain.gyroAssisted) {
+            Robot.instance.driveTrain.assistedArcadeDrive(Robot.instance.oi.getMovement(), Robot.instance.oi.getRotation());
         } else {
-            // When the driver is manually turning the robot, the robot is considered heading the right way.
-            // In this command we only use the heading data for correction.
-            // Stop updating the heading correction value.
-            Robot.instance.gyro.heading = 0;
+            Robot.instance.driveTrain.arcadeDrive(Robot.instance.oi.getMovement(), Robot.instance.oi.getRotation());
         }
-        // For the rotation value, take the sum of the last heading correction and the user input value
-        // to prevent unpredicted rotation.
-        Robot.instance.driveTrain.arcadeDrive(Robot.instance.oi.getMovement(), headingCorrection + Robot.instance.oi.getRotation() * joystickInputMultiplier);
     }
 
     protected boolean isFinished() {

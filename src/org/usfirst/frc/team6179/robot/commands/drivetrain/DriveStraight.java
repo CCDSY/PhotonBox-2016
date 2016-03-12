@@ -14,7 +14,6 @@ import org.usfirst.frc.team6179.robot.Robot;
 public class DriveStraight extends Command {
 
     private double speed = 0.8;
-    private double turningIncrement = 0.5;
 
     public DriveStraight() {
         requires(Robot.instance.driveTrain);
@@ -22,13 +21,11 @@ public class DriveStraight extends Command {
 
     @Override
     protected void initialize() {
-        Robot.instance.driveTrain.arcadeDrive(speed, 0);
-        Robot.instance.gyro.heading = 0;
+        Robot.instance.driveTrain.assistedArcadeDrive(speed, 0);
     }
 
     @Override
     protected void execute() {
-        Robot.instance.driveTrain.arcadeDrive(speed, Math.max(-0.8, Math.min(0.8, turningIncrement * Robot.instance.gyro.heading / 0.001)));
     }
 
     @Override

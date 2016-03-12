@@ -1,10 +1,7 @@
-package org.usfirst.frc.team6179.robot.subsystems;
+package org.usfirst.frc.team6179.robot.sensors;
 
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team6179.robot.Robot;
-import org.usfirst.frc.team6179.robot.commands.drivetrain.UpdateDriveTrainGyroData;
 import org.usfirst.frc.team6179.robot.configurations.DriveTrainConfig;
 import org.usfirst.frc.team6179.robot.sensors.GY521GyroAccelerometer;
 
@@ -18,7 +15,7 @@ import org.usfirst.frc.team6179.robot.sensors.GY521GyroAccelerometer;
  * other command that uses the gyro's data should not `require` this subsystem;
  * they should just access the `heading` field.
  */
-public class DriveTrainGyro extends Subsystem {
+public class DriveTrainGyro {
 
     /**
      * The current heading of the robot.
@@ -36,18 +33,13 @@ public class DriveTrainGyro extends Subsystem {
         timer.start();
     }
 
-    @Override
-    protected void initDefaultCommand() {
-        setDefaultCommand(new UpdateDriveTrainGyroData());
-    }
-
-    public void updateDriveTrainData() {
+    public void updateData() {
         double angularVelocity = getAngularVelocity();
         heading += timer.get() * angularVelocity;
         timer.reset();
 
         SmartDashboard.putNumber("Angular Velocity", angularVelocity);
-        SmartDashboard.putNumber("Angle", Robot.instance.gyro.heading);
+        SmartDashboard.putNumber("Angle", heading);
     }
 
     public double getAngularVelocity() {
