@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc.team6179.robot.commands.AimMode;
+import org.usfirst.frc.team6179.robot.commands.BeastMode;
 import org.usfirst.frc.team6179.robot.commands.climber.ResetClimberLock;
 import org.usfirst.frc.team6179.robot.commands.climber.UnlockClimber;
 import org.usfirst.frc.team6179.robot.commands.drivetrain.DriveStraight;
@@ -28,6 +29,7 @@ public class LogitechGamepad implements OI {
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_LB).whenPressed(new ShootBoulder());
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_A).whenPressed(new ResetCrosshair());
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_RB).whileHeld(new AimMode());
+        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_LEFT_THUMBSTICK).whileHeld(new BeastMode());
         // bind buttons to commands. //
 
         // display commands on dashboard for easy testing. //
