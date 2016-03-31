@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team6179.robot.commands.DriveStraightForDuration;
+import org.usfirst.frc.team6179.robot.commands.drivetrain.DriveStraight;
 import org.usfirst.frc.team6179.robot.mappings.RobotMap;
 import org.usfirst.frc.team6179.robot.subsystems.*;
 
@@ -19,7 +21,9 @@ import org.usfirst.frc.team6179.robot.subsystems.*;
  */
 public class Robot extends IterativeRobot {
 
-    /** A globally stored reference to the robot instance, since there will only be one instance at any given time. */
+    /**
+     * A globally stored reference to the robot instance, since there will only be one instance at any given time.
+     */
     public static Robot instance;
 
     Command autonomousCommand;
@@ -55,6 +59,7 @@ public class Robot extends IterativeRobot {
         oi = new LogitechGamepad();
 
         chooser = new SendableChooser();
+        chooser.addDefault("Drive Straight Through Low Bar", new DriveStraightForDuration(1.5));
         SmartDashboard.putData("Auto mode", chooser);
     }
 
