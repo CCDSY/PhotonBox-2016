@@ -7,8 +7,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.usfirst.frc.team6179.robot.commands.DriveStraightForDuration;
-import org.usfirst.frc.team6179.robot.commands.drivetrain.DriveStraight;
+import org.usfirst.frc.team6179.robot.commands.auto.DriveStraightForDuration;
 import org.usfirst.frc.team6179.robot.mappings.RobotMap;
 import org.usfirst.frc.team6179.robot.subsystems.*;
 
