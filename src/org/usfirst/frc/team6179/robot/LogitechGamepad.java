@@ -27,7 +27,7 @@ public class LogitechGamepad implements OI {
         stick = new Joystick(0);
 
         // bind buttons to commands. //
-        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_X).toggleWhenPressed(new CollectBoulder());
+        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_X).whileHeld(new CollectBoulder());
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_LB).whenPressed(new ShootBoulder());
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_A).whenPressed(new ResetCrosshair());
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_RB).whileHeld(new AimMode());
