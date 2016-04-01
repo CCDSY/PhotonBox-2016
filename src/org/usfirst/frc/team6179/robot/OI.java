@@ -41,6 +41,4 @@ public interface OI {
      */
     double getArmMovement();
 
-    double getShooterTriggerServoMovement();
-
 }
