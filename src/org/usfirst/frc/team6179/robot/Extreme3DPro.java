@@ -51,11 +51,6 @@ public class Extreme3DPro implements OI {
     }
 
     @Override
-    public double getShooterTriggerServoMovement() {
-        return 0;
-    }
-
-    @Override
     public double getShooterElevatorInput() {
         return 0;
     }
