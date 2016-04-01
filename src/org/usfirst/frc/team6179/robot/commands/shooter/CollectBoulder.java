@@ -32,14 +32,18 @@ public class CollectBoulder extends Command {
     }
 
     protected void end() {
-        // stop the wheels when the command ends.
-        Robot.instance.shooter.shootMotor.set(0);
-        Robot.instance.arm.intakeMotor.set(0);
+        endCommand();
     }
 
     protected void interrupted() {
+        endCommand();
+    }
+
+    private void endCommand() {
         // stop the wheels when the command ends.
         Robot.instance.shooter.shootMotor.set(0);
         Robot.instance.arm.intakeMotor.set(0);
+        Robot.instance.shooter.triggerServo.set(ShooterConfig.triggerServoBackPosition);
     }
+
 }

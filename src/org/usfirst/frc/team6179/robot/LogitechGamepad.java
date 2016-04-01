@@ -14,6 +14,7 @@ import org.usfirst.frc.team6179.robot.commands.shooter.CollectBoulder;
 import org.usfirst.frc.team6179.robot.commands.shooter.ShootBoulder;
 import org.usfirst.frc.team6179.robot.commands.vision.ResetCrosshair;
 import org.usfirst.frc.team6179.robot.commands.vision.SendVideo;
+import org.usfirst.frc.team6179.robot.commands.vision.SendVideoWithAimingMarkings;
 import org.usfirst.frc.team6179.robot.commands.vision.SendVideoWithCrosshair;
 import org.usfirst.frc.team6179.robot.configurations.ArmConfig;
 import org.usfirst.frc.team6179.robot.mappings.LogitechGamepadKeyMapping;
@@ -41,7 +42,10 @@ public class LogitechGamepad implements OI {
         // Vision
         SmartDashboard.putData("Display Shooter Camera Video", new SendVideo(Robot.instance.shooterVision));
         SmartDashboard.putData("Display Shooter Camera Video with Crosshair", new SendVideoWithCrosshair(Robot.instance.shooterVision));
+        SmartDashboard.putData("Display Shooter Camera Video with Aiming Markings", new SendVideoWithAimingMarkings(Robot.instance.shooterVision));
+        // DriveTrain
         SmartDashboard.putData("Drive Straight", new DriveStraight());
+        // Climber
         SmartDashboard.putData("Unlock Climber", new UnlockClimber());
         SmartDashboard.putData("Reset Climber Lock", new ResetClimberLock());
         SmartDashboard.putData("Pull Climber", new Pull());

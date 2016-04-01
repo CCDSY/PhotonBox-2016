@@ -29,4 +29,9 @@ public class ShooterConfig {
      */
     public static double ingoingOutput = 0.5;
 
+    /**
+     * The speed at which the output signal for the trigger servo will change during testing.
+     */
+    public static double triggerServoTestMoveSpeed = 0.75;
+
 }

@@ -1,5 +1,6 @@
 package org.usfirst.frc.team6179.robot.commands.vision;
 
+import com.ni.vision.NIVision.Image;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -9,18 +10,16 @@ import org.usfirst.frc.team6179.robot.configurations.VisionConfig;
 import org.usfirst.frc.team6179.robot.subsystems.Vision;
 
 /**
- * Created by huangzhengcheng1 on 2/28/16.
- * <p>
- * A command that sends back video from a camera to the driver's computer
- * with a crosshair drawn in the center
+ * Created by CC on 3/9/16.
  */
-public class SendVideoWithCrosshair extends Command {
+public class SendVideoWithAimingMarkings extends Command {
 
     private Vision vision;
     private CameraServer server;
 
-    public SendVideoWithCrosshair(Vision vision) {
+    public SendVideoWithAimingMarkings(Vision vision) {
         this.vision = vision;
+
         requires(vision);
     }
 
@@ -40,8 +39,13 @@ public class SendVideoWithCrosshair extends Command {
         SmartDashboard.putNumber("Crosshair offset X", Robot.instance.shooterVision.crosshairOffsetX);
         SmartDashboard.putNumber("Crosshair offset Y", Robot.instance.shooterVision.crosshairOffsetY);
 
+        // pump the image through the drawing pipeline
+        Image image = vision.grabPicture();
+        vision.showCrosshairOnImage(image, Robot.instance.shooterVision.crosshairOffsetX, Robot.instance.shooterVision.crosshairOffsetY);
+        vision.showRulerOnImage(image);
+
         // send back the new image.
-        server.setImage(vision.showCrosshairOnImage(vision.grabPicture(), Robot.instance.shooterVision.crosshairOffsetX, Robot.instance.shooterVision.crosshairOffsetY));
+        server.setImage(image);
     }
 
     @Override
@@ -58,4 +62,5 @@ public class SendVideoWithCrosshair extends Command {
     protected void interrupted() {
         vision.stopCamera();
     }
+
 }
