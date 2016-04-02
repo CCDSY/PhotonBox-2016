@@ -9,11 +9,8 @@ import org.usfirst.frc.team6179.robot.commands.climber.Pull;
 import org.usfirst.frc.team6179.robot.commands.climber.ResetClimberLock;
 import org.usfirst.frc.team6179.robot.commands.climber.Stretch;
 import org.usfirst.frc.team6179.robot.commands.climber.UnlockClimber;
-import org.usfirst.frc.team6179.robot.commands.drivetrain.DriveStraight;
 import org.usfirst.frc.team6179.robot.commands.shooter.CollectBoulder;
 import org.usfirst.frc.team6179.robot.commands.shooter.ShootBoulder;
-import org.usfirst.frc.team6179.robot.commands.vision.ResetCrosshair;
-import org.usfirst.frc.team6179.robot.commands.vision.SendVideo;
 import org.usfirst.frc.team6179.robot.commands.vision.SendVideoWithAimingMarkings;
 import org.usfirst.frc.team6179.robot.commands.vision.SendVideoWithCrosshair;
 import org.usfirst.frc.team6179.robot.configurations.ArmConfig;
@@ -22,18 +19,20 @@ import org.usfirst.frc.team6179.robot.mappings.LogitechGamepadKeyMapping;
 public class LogitechGamepad implements OI {
     // TODO: Resolve keymap conflict
 
-    private Joystick stick;
+    private Joystick driveStick;
+    private Joystick sidekickStick;
 
     public LogitechGamepad() {
-        stick = new Joystick(0);
+        driveStick = new Joystick(0);
+        sidekickStick = new Joystick(1);
 
         // bind buttons to commands. //
-        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_X).whileHeld(new CollectBoulder());
-        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_LB).whenPressed(new ShootBoulder());
-        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_A).toggleWhenPressed(new Pull());
-        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_RB).whileHeld(new AimMode());
-        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_B).whileHeld(new BeastMode());
-        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_Y).whenPressed(new UnlockClimber());
+        new JoystickButton(sidekickStick, LogitechGamepadKeyMapping.BTN_X).whileHeld(new CollectBoulder());
+        new JoystickButton(sidekickStick, LogitechGamepadKeyMapping.BTN_LB).whenPressed(new ShootBoulder());
+        new JoystickButton(sidekickStick, LogitechGamepadKeyMapping.BTN_A).toggleWhenPressed(new Pull());
+        new JoystickButton(driveStick, LogitechGamepadKeyMapping.BTN_RB).whileHeld(new AimMode());
+        new JoystickButton(driveStick, LogitechGamepadKeyMapping.BTN_B).whileHeld(new BeastMode());
+        new JoystickButton(sidekickStick, LogitechGamepadKeyMapping.BTN_Y).whenPressed(new UnlockClimber());
         // bind buttons to commands. //
 
         // display commands on dashboard for easy testing. //
@@ -50,48 +49,48 @@ public class LogitechGamepad implements OI {
 
     @Override
     public double getMovement() {
-        return -stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_Y);
+        return -driveStick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_Y);
 //        return 0;
     }
 
     @Override
     public double getRotation() {
-        return -stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_X);
+        return -driveStick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_X);
 //        return 0;
     }
 
     @Override
     public double getLeftMovement() {
-//        return stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_Y);
+//        return driveStick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_Y);
         return 0;
     }
 
     @Override
     public double getRightMovement() {
-//        return stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_RIGHT_Y);
+//        return driveStick.getRawAxis(LogitechGamepadKeyMapping.AXIS_RIGHT_Y);
         return 0;
     }
 
     @Override
     public double getScaledCrosshairOffsetX() {
-//        return stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_X);
+//        return driveStick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_X);
         return 0;
     }
 
     @Override
     public double getScaledCrosshairOffsetY() {
-//        return stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_Y);
+//        return driveStick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_Y);
         return 0;
     }
 
     @Override
     public double getArmMovement() {
-        return (stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_RIGHT_TRIGGER) - stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_TRIGGER)) * ArmConfig.armMovementMultiplier;
+        return (sidekickStick.getRawAxis(LogitechGamepadKeyMapping.AXIS_RIGHT_TRIGGER) - sidekickStick.getRawAxis(LogitechGamepadKeyMapping.AXIS_LEFT_TRIGGER)) * ArmConfig.armMovementMultiplier;
     }
 
     @Override
     public double getShooterElevatorInput() {
-        return stick.getRawAxis(LogitechGamepadKeyMapping.AXIS_RIGHT_Y);
+        return sidekickStick.getRawAxis(LogitechGamepadKeyMapping.AXIS_RIGHT_Y);
     }
 
 }
