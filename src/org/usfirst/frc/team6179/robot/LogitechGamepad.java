@@ -14,6 +14,7 @@ import org.usfirst.frc.team6179.robot.commands.shooter.CollectBoulder;
 import org.usfirst.frc.team6179.robot.commands.shooter.ShootBoulder;
 import org.usfirst.frc.team6179.robot.commands.vision.ResetCrosshair;
 import org.usfirst.frc.team6179.robot.commands.vision.SendVideo;
+import org.usfirst.frc.team6179.robot.commands.vision.SendVideoWithAimingMarkings;
 import org.usfirst.frc.team6179.robot.commands.vision.SendVideoWithCrosshair;
 import org.usfirst.frc.team6179.robot.configurations.ArmConfig;
 import org.usfirst.frc.team6179.robot.mappings.LogitechGamepadKeyMapping;
@@ -27,22 +28,19 @@ public class LogitechGamepad implements OI {
         stick = new Joystick(0);
 
         // bind buttons to commands. //
-        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_X).toggleWhenPressed(new CollectBoulder());
+        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_X).whileHeld(new CollectBoulder());
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_LB).whenPressed(new ShootBoulder());
-        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_A).whenPressed(new ResetCrosshair());
+        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_A).toggleWhenPressed(new Pull());
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_RB).whileHeld(new AimMode());
         new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_B).whileHeld(new BeastMode());
+        new JoystickButton(stick, LogitechGamepadKeyMapping.BTN_Y).whenPressed(new UnlockClimber());
         // bind buttons to commands. //
 
         // display commands on dashboard for easy testing. //
-        // Shooter
-        SmartDashboard.putData("Shoot Boulder", new ShootBoulder());
-        SmartDashboard.putData("Collect Boulder", new CollectBoulder());
         // Vision
-        SmartDashboard.putData("Display Shooter Camera Video", new SendVideo(Robot.instance.shooterVision));
         SmartDashboard.putData("Display Shooter Camera Video with Crosshair", new SendVideoWithCrosshair(Robot.instance.shooterVision));
-        SmartDashboard.putData("Drive Straight", new DriveStraight());
-        SmartDashboard.putData("Unlock Climber", new UnlockClimber());
+        SmartDashboard.putData("Display Shooter Camera Video with Aiming Markings", new SendVideoWithAimingMarkings(Robot.instance.shooterVision));
+        // Climber
         SmartDashboard.putData("Reset Climber Lock", new ResetClimberLock());
         SmartDashboard.putData("Pull Climber", new Pull());
         SmartDashboard.putData("Stretch Climber", new Stretch());
